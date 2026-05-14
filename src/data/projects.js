@@ -6,7 +6,7 @@ export const projects = [
       en: "An online learning platform enabling users to track progress, issue certificates, and receive course reminders via Line. Built with Angular, ExpressJS, and Moodle.",
       th: "แพลตฟอร์มเรียนออนไลน์ที่ช่วยให้ผู้ใช้งานสามารถเก็บคะแนน ออกใบประกาศนียบัตร พร้อมการแจ้งเตือนการเรียนซ้ำผ่าน Line โดยพัฒนาด้วย Angular และ ExpressJS ร่วมกับ Moodle"
     },
-    banner_url: "https://e-academy.ditp.go.th/assets/e-academy/image/logo/logo_top.png",
+    banner_url: "https://e-academy.ditp.go.th/assets/nea-e-academy/images/logo_top_white.png",
     link: "https://e-academy.ditp.go.th/home",
     github_link: "",
     status: "DEPLOYED",
@@ -19,7 +19,7 @@ export const projects = [
       en: "A back-office system for managing data in E-Academy, including learning progress reports, adding/removing courses and instructors, tracking learner scores, and sending notifications via Line.",
       th: "ระบบหลังบ้านสำหรับจัดการข้อมูลใน E-Academy เช่น รายงานผลการเรียน การเพิ่ม/ลบหลักสูตรและวิทยากร ติดตามคะแนนผู้เรียน และการแจ้งเตือนผ่าน Line"
     },
-    banner_url: "",
+    banner_url: "https://e-academy.ditp.go.th/assets/nea-e-academy/images/logo_top_white.png",
     link: "https://e-academy.ditp.go.th/backoffice/",
     github_link: "",
     status: "DEPLOYED",
@@ -32,7 +32,7 @@ export const projects = [
       en: "A chatbot platform developed as a WebApp using NestJS and Python. Supports data training for improved response accuracy and flexibility.",
       th: "แพลตฟอร์มตอบกลับอัตโนมัติด้วย Chatbot ที่พัฒนาด้วย WebApp ใช้ NestJS และ Python รองรับการเทรนข้อมูลเพื่อปรับปรุงการตอบสนอง เพิ่มความยืดหยุ่นในการใช้งาน"
     },
-    banner_url: "https://nea.ditp.go.th/th/images/logo-nea.png",
+    banner_url: "https://e-academy.ditp.go.th/assets/nea-e-academy/images/img-logo.webp",
     link: "https://e-academy.ditp.go.th/livechat/ui/chatbox",
     github_link: "",
     status: "ACTIVE",
@@ -45,8 +45,8 @@ export const projects = [
       en: "A platform for tracking survey results with features like dashboard reporting, survey creation/deletion, and data export in Excel format.",
       th: "แพลตฟอร์มติดตามผลการทำแบบประเมิน พร้อมฟีเจอร์รายงานผลแบบ Dashboard การสร้าง/ลบแบบประเมิน และการ Export ข้อมูลในรูปแบบไฟล์ Excel"
     },
-    banner_url: "https://nea.qsurve.convtech.app/assets/logo_qserve.png",
-    link: "https://nea.qsurve.convtech.app/view/dashboard",
+    banner_url: "",
+    link: "",
     github_link: "",
     status: "ACTIVE",
     skills: ["Angular", "PrimeNG", "NestJS"]
@@ -84,7 +84,7 @@ export const projects = [
       en: "A personal portfolio website showcasing personal information, work experience, projects completed, educational background, and contact methods.",
       th: "เว็บไซต์แสดงผลงาน Portfolio ส่วนตัว แสดงข้อมูลส่วนตัว ประวัติการทำงาน โปรเจคที่เคยทำ ประวัติการศึกษาและช่องทางการติดต่อ"
     },
-    banner_url: "",
+    banner_url: "/assets/image/portfolio-preview.png",
     link: "https://mrtongx0.github.io/",
     github_link: "https://github.com/MrToNGx0/MrToNGx0.github.io",
     status: "ACTIVE",
@@ -92,15 +92,28 @@ export const projects = [
   },
   {
     id: "PRJ-08",
-    title: { en: "Portfolio API", th: "Portfolio API" },
+    title: { en: "ADOS", th: "ADOS" },
     description: {
-      en: "An API designed to manage and organize Portfolio website data so that it can be easily edited or retrieved.",
-      th: "API ที่ออกแบบมาเพื่อจัดการและจัดระเบียบข้อมูลเว็บไซต์ Portfolio ให้สามารถแก้ไขหรือเรียกข้อมูลได้ง่าย"
+      en: "An emergency prevention and management system.",
+      th: "ระบบป้องกันและจัดการเหตุฉุกเฉิน"
     },
     banner_url: "",
     link: "",
-    github_link: "https://github.com/MrToNGx0/portfolio-api",
-    status: "DEVELOPMENT",
-    skills: ["NestJS", "PostgreSQL"]
+    github_link: "",
+    status: "ACTIVE",
+    skills: ["React", "Vite", "Tailwind CSS", "FontAwesome"]
+  },
+  {
+    id: "PRJ-09",
+    title: { en: "AheadAll Plus", th: "AheadAll Plus" },
+    description: {
+      en: "A juristic and resident management system designed for property maintenance, issue tracking, and resolving community problems.",
+      th: "ระบบดูแลลูกบ้านสำหรับนิติบุคคล รองรับการแจ้งซ่อม ติดตามสถานะ และแก้ไขปัญหาต่างๆ ภายในโครงการที่พักอาศัย"
+    },
+    banner_url: "",
+    link: "",
+    github_link: "",
+    status: "ACTIVE",
+    skills: ["Angular", "NestJS", "PostgreSQL"]
   }
 ];

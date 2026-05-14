@@ -1,7 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
-  faEnvelope, faBriefcase, faHouse, faRocket, faMicrochip, faGraduationCap
+  faCompass, faLayerGroup, faTerminal, faRoute, faCertificate, faPaperPlane
 } from '@fortawesome/free-solid-svg-icons';
 import { faGithub, faFacebook, faInstagram, faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { motion } from 'framer-motion';
@@ -59,12 +59,12 @@ const Controls = ({ currentLang, changeLanguage }) => {
 const Navbar = ({ activeSection }) => {
   const { t } = useTranslation();
   const navItems = [
-    { id: 'home', icon: faHouse, label: t('nav.home') },
-    { id: 'projects', icon: faRocket, label: t('nav.work') },
-    { id: 'skills', icon: faMicrochip, label: t('nav.tech') },
-    { id: 'experience', icon: faBriefcase, label: t('nav.experience') },
-    { id: 'education', icon: faGraduationCap, label: t('nav.education') },
-    { id: 'contact', icon: faEnvelope, label: t('nav.contact') },
+    { id: 'home', icon: faCompass, label: t('nav.home') },
+    { id: 'projects', icon: faLayerGroup, label: t('nav.work') },
+    { id: 'skills', icon: faTerminal, label: t('nav.tech') },
+    { id: 'experience', icon: faRoute, label: t('nav.experience') },
+    { id: 'education', icon: faCertificate, label: t('nav.education') },
+    { id: 'contact', icon: faPaperPlane, label: t('nav.contact') },
   ];
 
   return (

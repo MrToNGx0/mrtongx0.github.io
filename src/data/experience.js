@@ -4,9 +4,16 @@ export const experience = [
     organizationName: { en: "AheadAll Co.,LTD.", th: "บริษัท อะเฮดออล จำกัด" },
     startDate: "2024-11",
     endDate: "Present",
+    skills: ["React", "Vite", "Tailwind CSS", "Python", "FastAPI", "MongoDB"],
     responsibilities: {
-      en: ["Develop and maintain web applications"],
-      th: ["พัฒนาและดูแลรักษาแอปพลิเคชันเว็บ"]
+      en: [
+        "Develop and maintain web applications",
+        "Maintain systems and resolve software bugs"
+      ],
+      th: [
+        "พัฒนาและดูแลรักษาแอปพลิเคชันเว็บ",
+        "ดูแลรักษาระบบและแก้ไขปัญหาบัค"
+      ]
     }
   },
   {
@@ -14,6 +21,7 @@ export const experience = [
     organizationName: { en: "Kabin Technology CO.,LTD.", th: "บริษัท กบิน เทคโนโลยี จำกัด" },
     startDate: "2024-06",
     endDate: "2024-10",
+    skills: ["Angular", "ExpressJS", "MySQL", "Socket.IO"],
     responsibilities: {
       en: [
         "Develop and maintain web applications",
@@ -34,6 +42,7 @@ export const experience = [
     organizationName: { en: "Convergence Technology CO.,LTD.", th: "บริษัท คอนเวอร์เจนซ์ เทคโนโลยี จำกัด" },
     startDate: "2023-01",
     endDate: "2024-05",
+    skills: ["Angular", "ExpressJS", "MariaDB", "Python"],
     responsibilities: {
       en: [
         "Develop and maintain web applications",

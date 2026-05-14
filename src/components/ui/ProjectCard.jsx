@@ -3,29 +3,50 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCode, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
-const ProjectCard = ({ project, lang }) => {
+const ProjectCard = ({ project, lang, onOpen }) => {
   const [imgError, setImgError] = React.useState(false);
 
   return (
-    <div className="minimal-card p-0 flex flex-col h-[320px] md:h-[350px] group bg-white border-slate-100 shadow-lg shadow-slate-200/30 hover:-translate-y-1 transition-all duration-300 w-[260px] md:w-[320px] lg:w-[380px] flex-shrink-0 snap-center relative overflow-hidden">
-      {/* Ultra-Compact Project Header */}
-      <div className="relative h-28 md:h-32 overflow-hidden bg-slate-50">
+    <div 
+      onClick={onOpen}
+      className="minimal-card p-0 flex flex-col h-[380px] group bg-white border-slate-100 shadow-lg shadow-slate-200/30 hover:-translate-y-2 hover:shadow-2xl hover:shadow-[oklch(75%_0.183_55.934)]/10 transition-all duration-500 w-[280px] md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333333%-1rem)] flex-shrink-0 snap-center relative cursor-pointer rounded-2xl"
+    >
+      {/* Dynamic Blurred Backdrop Header */}
+      <div className="relative h-32 md:h-40 overflow-hidden bg-slate-900 flex items-center justify-center group/img rounded-t-2xl">
         {!imgError && project.banner_url ? (
-          <img 
-            src={project.banner_url} 
-            alt={project.title[lang]} 
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            onError={() => setImgError(true)}
-          />
+          <>
+            {/* Blurred Background Layer */}
+            <div 
+              className="absolute inset-0 scale-150 blur-2xl opacity-40 transition-transform duration-700 group-hover/img:scale-[1.6]"
+              style={{ 
+                backgroundImage: `url(${project.banner_url})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center'
+              }}
+            />
+            {/* Glossy Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/20" />
+            
+            {/* Main Image Layer */}
+            <img 
+              src={project.banner_url} 
+              alt={project.title[lang]} 
+              className="max-w-[85%] max-h-[85%] object-contain relative z-10 transition-transform duration-500 group-hover:scale-110 drop-shadow-[0_10px_20px_rgba(0,0,0,0.3)]"
+              onError={() => setImgError(true)}
+            />
+          </>
         ) : (
-          <div className="w-full h-full flex items-center justify-center bg-slate-50 relative overflow-hidden">
-             <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, black 1px, transparent 0)', backgroundSize: '8px 8px' }} />
-             <FontAwesomeIcon icon={faCode} className="text-2xl text-slate-200" />
+          <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-slate-800 to-slate-950">
+             {/* Abstract Minimalist Background */}
+             <div className="absolute inset-0 opacity-[0.1]" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '12px 12px' }} />
+             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-[oklch(75%_0.183_55.934)]/10 rounded-full blur-3xl" />
+             
+             <div className="relative z-10 flex flex-col items-center gap-2">
+                <FontAwesomeIcon icon={faCode} className="text-xl text-slate-500" />
+                <span className="text-[7px] font-black text-slate-400 uppercase tracking-[0.2em]">{lang === 'th' ? 'ข้อมูลภายในบริษัท' : 'Confidential'}</span>
+             </div>
           </div>
         )}
-        <div className="absolute top-3 right-3 px-2 py-0.5 bg-white/90 backdrop-blur-md rounded-full text-[8px] font-black text-slate-900 uppercase tracking-widest shadow-sm border border-slate-100">
-          {project.status}
-        </div>
       </div>
 
       <div className="p-4 md:p-6 flex flex-col flex-grow">

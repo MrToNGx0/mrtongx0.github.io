@@ -142,5 +142,29 @@ export const skills = [
       en: "PostgreSQL is a free and open-source relational database system.",
       th: "โพสต์เกรสคิวเอล (PostgreSQL) เป็นระบบจัดการฐานข้อมูลในลักษณะของซอฟต์แวร์เสรี"
     }
+  },
+  {
+    label: "MongoDB",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+    description: {
+      en: "A document-based, distributed database built for modern application developers.",
+      th: "ระบบจัดการฐานข้อมูลแบบ NoSQL ที่ใช้โครงสร้างแบบเอกสาร (Document-oriented)"
+    }
+  },
+  {
+    label: "React",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+    description: {
+      en: "A JavaScript library for building user interfaces based on components.",
+      th: "ไลบรารี JavaScript สำหรับสร้างส่วนติดต่อผู้ใช้ด้วยคอมโพเนนต์"
+    }
+  },
+  {
+    label: "Vite",
+    icon: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Vitejs-logo.svg",
+    description: {
+      en: "A local development server and build tool with hot module replacement.",
+      th: "เครื่องมือสร้างและพัฒนาเว็บไซต์ที่รวดเร็วพร้อมระบบ Hot Module Replacement"
+    }
   }
 ];

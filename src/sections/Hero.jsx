@@ -27,18 +27,35 @@ const Hero = ({ personal, currentLang, socialIcons, t }) => {
         </motion.div>
       </motion.div>
 
+      {/* Last Name (Background Layer) */}
       <motion.div 
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1, ease: "easeOut" }}
         className="absolute top-12 right-8 md:top-20 md:right-20 z-10 text-right"
       >
-        <h1 className="text-5xl md:text-8xl lg:text-[14rem] font-bold text-slate-900 tracking-tighter uppercase leading-none outline-text opacity-50 transition-colors duration-500">
+        <h1 className="text-5xl md:text-8xl lg:text-[14rem] font-bold text-slate-900 tracking-tighter uppercase leading-none outline-text opacity-50 transition-colors duration-500 pointer-events-none">
           {personal.lastName[currentLang]}
         </h1>
-        <div className="flex gap-4 justify-end mt-4">
-          {personal.social.slice(0, 2).map((s, idx) => (
-            <a key={idx} href={s.link} target="_blank" rel="noopener noreferrer" className="text-slate-300 hover:text-slate-900 transition-colors text-lg">
+      </motion.div>
+
+      {/* Social Icons (Foreground Layer) */}
+      <motion.div 
+        initial={{ opacity: 0, x: 50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+        className="absolute top-28 md:top-48 lg:top-64 right-8 md:right-20 z-40 text-right"
+      >
+        <div className="flex gap-4 justify-end pointer-events-auto">
+          {personal.social.map((s, idx) => (
+            <a 
+              key={idx} 
+              href={s.link} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-slate-300 hover:text-slate-900 transition-colors text-lg md:text-xl p-2"
+              title={s.label}
+            >
               <FontAwesomeIcon icon={socialIcons[s.label]} />
             </a>
           ))}
