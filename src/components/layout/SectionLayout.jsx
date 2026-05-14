@@ -35,7 +35,7 @@ const SectionLayout = ({ id, title, subtitle, children, hasReadabilityBg = true,
               transition={{ duration: 0.8, delay: 0.1 }}
               className="text-4xl md:text-6xl font-bold text-slate-900 tracking-tight uppercase"
             >
-              {title.split('_').join(' ')}
+              {title?.split('_').join(' ')}
             </motion.h2>
           </div>
         )}

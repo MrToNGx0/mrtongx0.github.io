@@ -24,7 +24,7 @@ const SkillCard = ({ skill, lang, index }) => {
             {skill.label}
           </span>
           <span className="text-[8px] text-slate-400 font-bold uppercase tracking-tighter truncate">
-            {skill.description[lang].split('.')[0]}
+            {skill.description?.[lang]?.split('.')[0] || ''}
           </span>
         </div>
       </div>
