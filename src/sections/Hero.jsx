@@ -47,7 +47,7 @@ const Hero = ({ personal, currentLang, socialIcons, t }) => {
         className="absolute top-28 md:top-48 lg:top-64 right-8 md:right-20 z-40 text-right"
       >
         <div className="flex gap-4 justify-end pointer-events-auto">
-          {personal.social.map((s, idx) => (
+          {personal.social?.map((s, idx) => (
             <a 
               key={idx} 
               href={s.link} 

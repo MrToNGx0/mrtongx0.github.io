@@ -29,7 +29,7 @@ const Projects = ({ projects, currentLang, t, dragScroll }) => {
             onMouseMove={dragScroll.onMouseMove}
             className={`flex overflow-x-auto snap-x snap-mandatory gap-6 no-scrollbar pb-10 pt-4 px-2 -mx-2 pointer-events-auto ${dragScroll.className}`}
           >
-            {projects.map((p, idx) => (
+            {projects?.map((p, idx) => (
               <ProjectCard 
                 key={idx} 
                 project={p} 

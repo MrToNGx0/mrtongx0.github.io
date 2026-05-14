@@ -91,7 +91,7 @@ const Skills = ({ skills, currentLang, t }) => {
               transition={{ duration: 0.2 }}
               className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3"
             >
-              {categoryItems[activeTab].map((itemLabel, index) => {
+              {categoryItems[activeTab]?.map((itemLabel, index) => {
                 const skill = getSkillData(itemLabel);
                 return skill ? (
                   <SkillCard 

@@ -60,7 +60,7 @@ const ProjectCard = ({ project, lang, onOpen }) => {
         
         <div className="mt-auto">
           <div className="flex flex-wrap gap-1.5 mb-4 pt-3 border-t border-slate-50">
-            {project.skills.slice(0, 3).map((skill, idx) => (
+            {project.skills?.slice(0, 3)?.map((skill, idx) => (
               <span key={idx} className="text-[7px] md:text-[8px] font-bold text-slate-400 bg-slate-50 px-1.5 py-0.5 rounded uppercase tracking-widest border border-slate-100">
                 {typeof skill === 'string' ? skill : skill.label}
               </span>

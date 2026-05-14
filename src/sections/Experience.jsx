@@ -70,7 +70,7 @@ const TimelineItem = ({ item, lang, index, total, t }) => {
         {/* Responsibilities - Tighter grid */}
         <div className="max-w-3xl">
            <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-1">
-             {item.responsibilities[lang].map((resp, i) => (
+             {item.responsibilities?.[lang]?.map((resp, i) => (
                <motion.li 
                  key={i}
                  className="flex items-start gap-2 text-[9px] md:text-[10px] text-slate-500 font-medium leading-tight group/item"

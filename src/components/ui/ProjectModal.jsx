@@ -104,7 +104,7 @@ const ProjectModal = ({ project, isOpen, onClose, lang }) => {
               <div className="mb-10">
                 <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] mb-4">Technologies</h4>
                 <div className="flex flex-wrap gap-2">
-                  {project.skills.map((skill, idx) => (
+                  {project.skills?.map((skill, idx) => (
                     <span key={idx} className="px-3 py-1.5 bg-slate-50 text-slate-600 text-[10px] font-bold rounded-lg border border-slate-100 uppercase tracking-widest">
                       {typeof skill === 'string' ? skill : skill.label}
                     </span>

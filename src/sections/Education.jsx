@@ -85,7 +85,7 @@ const Education = ({ education, currentLang, t }) => {
         </div>
 
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-stretch">
-          {education.map((ed, idx) => (
+          {education?.map((ed, idx) => (
             <EducationCard 
               key={idx} 
               ed={ed} 
