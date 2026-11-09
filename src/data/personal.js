@@ -7,7 +7,7 @@ export const personal = {
     location: { en: 'Bangkok, Thailand', th: 'กรุงเทพมหานคร, ประเทศไทย' },
     jobPosition: { en: 'Software Developer (Full Stack)', th: 'นักพัฒนาซอฟต์แวร์ (Full Stack)' },
     avatarLink: '/assets/image/profile.webp',
-    resumeLink: '/assets/file/resume_jukkrit_20250106.pdf',
+    resumeLink: '/assets/file/Jukkrit_Sukkha_Resume.pdf',
     social: [
         { label: 'Facebook', link: 'https://web.facebook.com/MrToNGx0' },
         { label: 'Instagram', link: 'https://www.instagram.com/_ttttttttttttttttttttong/' },
