@@ -1,46 +1,43 @@
 import React, { useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faArrowRight, faCode } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
-const ProjectModal = ({ project, isOpen, onClose, lang }) => {
-  // Lock scroll when modal is open
+const ProjectModal = ({ project, onClose, lang }) => {
+  // close on Escape
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => { document.body.style.overflow = 'unset'; };
-  }, [isOpen]);
+    const onKey = (e) => e.key === 'Escape' && onClose();
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [onClose]);
 
   if (!project) return null;
 
   return (
-    <AnimatePresence>
-      {isOpen && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8">
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            transition={{ duration: 0.15 }}
             onClick={onClose}
             className="absolute inset-0 bg-slate-900/40 backdrop-blur-md"
           />
 
           {/* Modal Content */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            initial={{ opacity: 0, scale: 0.92, y: 16 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            transition={{ type: "spring", damping: 25, stiffness: 300 }}
+            exit={{ opacity: 0, scale: 0.95, y: 8, transition: { duration: 0.15 } }}
+            transition={{ type: 'spring', damping: 26, stiffness: 420 }}
             className="relative w-full max-w-5xl max-h-[90vh] bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row"
           >
             {/* Close Button */}
             <button
               onClick={onClose}
+              aria-label="Close"
               className="absolute top-6 right-6 z-10 w-10 h-10 bg-white/80 backdrop-blur-md border border-slate-100 rounded-full flex items-center justify-center text-slate-900 hover:scale-110 active:scale-95 transition-all shadow-sm"
             >
               <FontAwesomeIcon icon={faTimes} />
@@ -74,7 +71,7 @@ const ProjectModal = ({ project, isOpen, onClose, lang }) => {
                    <div className="absolute inset-0 opacity-[0.1]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '24px 24px' }} />
                    
                    <div className="relative">
-                      <div className="absolute inset-0 bg-[oklch(75%_0.183_55.934)]/10 blur-3xl rounded-full" />
+                      <div className="absolute inset-0 bg-brand/10 blur-3xl rounded-full" />
                       <FontAwesomeIcon icon={faCode} className="text-7xl text-slate-700 relative z-10 mb-6" />
                    </div>
                    
@@ -91,7 +88,9 @@ const ProjectModal = ({ project, isOpen, onClose, lang }) => {
             </div>
 
             {/* Information Side */}
-            <div className="w-full md:w-1/2 p-8 md:p-12 overflow-y-auto bg-white flex flex-col">
+            <div
+              className="relative min-h-0 w-full md:w-1/2 p-8 md:p-12 overflow-y-auto flex flex-col"
+            >
               <div className="mb-8">
                 <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 tracking-tight uppercase">
                   {project.title[lang] || project.title.en}
@@ -118,7 +117,7 @@ const ProjectModal = ({ project, isOpen, onClose, lang }) => {
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 px-8 py-4 bg-slate-900 text-white rounded-2xl font-bold text-xs uppercase tracking-widest hover:bg-[oklch(75%_0.183_55.934)] transition-all duration-300 text-center shadow-xl shadow-slate-200"
+                    className="flex-1 px-8 py-4 bg-slate-900 text-white rounded-2xl font-bold text-xs uppercase tracking-widest hover:bg-brand transition-all duration-300 text-center shadow-xl shadow-slate-200"
                   >
                     Launch Live Site <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
                   </a>
@@ -137,8 +136,6 @@ const ProjectModal = ({ project, isOpen, onClose, lang }) => {
             </div>
           </motion.div>
         </div>
-      )}
-    </AnimatePresence>
   );
 };
 

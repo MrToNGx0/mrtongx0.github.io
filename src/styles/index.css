@@ -12,37 +12,28 @@
   html, body {
     @apply h-full m-0 p-0 overflow-hidden;
   }
-  
+
   body {
-    @apply bg-white text-slate-800 antialiased;
-    font-family: 'IBM Plex Sans Thai', 'Inter', sans-serif;
+    @apply bg-white text-slate-700 antialiased;
+    font-family: 'IBM Plex Sans Thai', sans-serif;
   }
-  
+
   h1, h2, h3, h4 {
     @apply text-slate-900 tracking-tight;
-    font-family: 'Anuphan', 'Space Grotesk', sans-serif;
+    font-family: 'Anuphan', sans-serif;
   }
 }
 
 @layer components {
-  .minimal-card {
-    @apply bg-white border border-slate-100 shadow-xl transition-all duration-300 rounded-xl;
-  }
-  
-  .accent-link {
-    @apply text-[oklch(75%_0.183_55.934)] hover:text-slate-900 transition-colors duration-200;
+  /* small uppercase label used above headings and for metadata */
+  .eyebrow {
+    @apply text-xs font-medium uppercase tracking-wider text-slate-500;
   }
 }
 
 .outline-text {
-  -webkit-text-stroke: 1px #e2e8f0;
+  -webkit-text-stroke: 1.5px rgb(15 23 42 / 0.55);
   color: transparent;
-}
-
-/* Subtle background grain */
-.bg-subtle {
-  background-image: radial-gradient(#e5e7eb 0.5px, transparent 0.5px);
-  background-size: 24px 24px;
 }
 
 @layer utilities {

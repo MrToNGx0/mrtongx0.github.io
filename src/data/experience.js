@@ -23,7 +23,7 @@ export const experience = [
     organizationName: { en: "Kabin Technology CO.,LTD.", th: "บริษัท กบิน เทคโนโลยี จำกัด" },
     startDate: "2024-06",
     endDate: "2024-10",
-    skills: ["Angular", "ExpressJS", "MySQL", "Socket.IO"],
+    skills: ["Angular", "Express", "MySQL", "Socket.IO"],
     responsibilities: {
       en: [
         "Develop and maintain web applications",
@@ -44,7 +44,7 @@ export const experience = [
     organizationName: { en: "Convergence Technology CO.,LTD.", th: "บริษัท คอนเวอร์เจนซ์ เทคโนโลยี จำกัด" },
     startDate: "2023-01",
     endDate: "2024-05",
-    skills: ["Angular", "ExpressJS", "MariaDB", "Python"],
+    skills: ["Angular", "Express", "MariaDB", "Python"],
     responsibilities: {
       en: [
         "Develop and maintain web applications and government backoffice systems",

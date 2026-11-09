@@ -15,8 +15,8 @@ export default {
         background: 'oklch(15% 0.02 55.934)',
       },
       fontFamily: {
-        heading: ['Anuphan', 'Space Grotesk', 'sans-serif'],
-        thai: ['IBM Plex Sans Thai', 'Inter', 'sans-serif'],
+        heading: ['Anuphan', 'sans-serif'],
+        thai: ['IBM Plex Sans Thai', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
       },
       animation: {

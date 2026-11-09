@@ -32,7 +32,7 @@ export const skills = [
     }
   },
   {
-    label: "Tailwind",
+    label: "Tailwind CSS",
     icon: "https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg",
     description: {
       en: "A utility-first CSS framework for rapidly building custom designs.",
@@ -65,14 +65,14 @@ export const skills = [
   },
   {
     label: "NestJS",
-    icon: "https://raw.githubusercontent.com/nestjs/nest/master/sample/01-cats-app/src/assets/logo.svg",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nestjs/nestjs-original.svg",
     description: {
       en: "A progressive Node.js framework for building efficient and scalable server-side applications.",
       th: "เฟรมเวิร์ก Node.js ที่พัฒนาให้มีประสิทธิภาพสูงและสามารถขยายตัวได้สำหรับแอปพลิเคชันฝั่งเซิร์ฟเวอร์"
     }
   },
   {
-    label: "ExpressJS",
+    label: "Express",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
     description: {
       en: "A fast, unopinionated, minimalist web framework for Node.js.",
@@ -113,7 +113,7 @@ export const skills = [
   },
   {
     label: "Strapi",
-    icon: "https://www.vectorlogo.zone/logos/strapiio/strapiio-icon.svg",
+    icon: "https://cdn.jsdelivr.net/npm/simple-icons@13.0.0/icons/strapi.svg",
     description: {
       en: "An open-source headless CMS for building APIs.",
       th: "CMS แบบ headless โอเพ่นซอร์สสำหรับการสร้าง API"
@@ -166,5 +166,29 @@ export const skills = [
       en: "A local development server and build tool with hot module replacement.",
       th: "เครื่องมือสร้างและพัฒนาเว็บไซต์ที่รวดเร็วพร้อมระบบ Hot Module Replacement"
     }
-  }
+  },
+  {
+    label: "Node.js",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+    description: {
+      en: "A JavaScript runtime for building server-side applications.",
+      th: "สภาพแวดล้อมรัน JavaScript สำหรับพัฒนาแอปพลิเคชันฝั่งเซิร์ฟเวอร์"
+    }
+  },
+  {
+    label: "FastAPI",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg",
+    description: {
+      en: "A modern, high-performance Python web framework for building APIs.",
+      th: "เฟรมเวิร์ก Python ประสิทธิภาพสูงสำหรับสร้าง API"
+    }
+  },
+  {
+    label: "InfluxDB",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/influxdb/influxdb-original.svg",
+    description: {
+      en: "A time-series database for metrics and event data.",
+      th: "ฐานข้อมูลแบบอนุกรมเวลาสำหรับข้อมูลเมตริกและเหตุการณ์"
+    }
+  },
 ];

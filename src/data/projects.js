@@ -93,7 +93,7 @@ export const projects = [
     link: "https://e-academy.ditp.go.th/home",
     github_link: "",
     status: "DEPLOYED",
-    skills: ["Angular", "ExpressJS", "Bootstrap", "Angular Material"]
+    skills: ["Angular", "Express", "Bootstrap", "Angular Material"]
   },
   {
     id: "PRJ-07",

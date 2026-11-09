@@ -1,11 +1,7 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { 
-  faCompass, faLayerGroup, faTerminal, faRoute, faCertificate, faPaperPlane
-} from '@fortawesome/free-solid-svg-icons';
 import { faGithub, faFacebook, faInstagram, faYoutube } from '@fortawesome/free-brands-svg-icons';
-import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import { MotionConfig } from 'framer-motion';
 
 import { personal } from './data/personal';
 import { skills } from './data/skills';
@@ -20,89 +16,69 @@ import Experience from './sections/Experience';
 import Education from './sections/Education';
 import Contact from './sections/Contact';
 import ScrollToTop from './components/ui/ScrollToTop';
+import CommandPalette, { shortcutLabel } from './components/ui/CommandPalette';
 
-const Background = React.memo(() => {
-  return (
-    <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none bg-white">
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute min-w-full min-h-full object-cover opacity-60 will-change-transform"
-      >
-        <source src="/assets/video/background.mp4" type="video/mp4" />
-      </video>
-      <div className="absolute inset-0 bg-white/40" />
-      <div className="absolute inset-0 bg-subtle opacity-10" />
-    </div>
-  );
-});
+const SECTIONS = ['home', 'projects', 'skills', 'experience', 'education', 'contact'];
 
-Background.displayName = 'Background';
-
-const Controls = React.memo(({ currentLang, changeLanguage }) => {
-  return (
-    <div className="fixed top-8 right-8 z-50 flex gap-4">
-      <button 
-        onClick={() => changeLanguage(currentLang === 'en' ? 'th' : 'en')}
-        className="w-12 h-12 bg-white/60 backdrop-blur-md border border-white/40 rounded-full flex items-center justify-center text-slate-900 shadow-lg transition-transform hover:scale-110 active:scale-95"
-      >
-        <span className="text-[10px] font-black uppercase tracking-tighter">{currentLang === 'en' ? 'TH' : 'EN'}</span>
-      </button>
-    </div>
-  );
-});
-
-Controls.displayName = 'Controls';
-
-const Navbar = React.memo(({ activeSection }) => {
+const Navbar = React.memo(({ activeSection, currentLang, changeLanguage, onOpenPalette }) => {
   const { t } = useTranslation();
   const navItems = [
-    { id: 'home', icon: faCompass, label: t('nav.home') },
-    { id: 'projects', icon: faLayerGroup, label: t('nav.work') },
-    { id: 'skills', icon: faTerminal, label: t('nav.tech') },
-    { id: 'experience', icon: faRoute, label: t('nav.experience') },
-    { id: 'education', icon: faCertificate, label: t('nav.education') },
-    { id: 'contact', icon: faPaperPlane, label: t('nav.contact') },
+    { id: 'projects', label: t('nav.work') },
+    { id: 'skills', label: t('nav.tech') },
+    { id: 'experience', label: t('nav.experience') },
+    { id: 'education', label: t('nav.education') },
+    { id: 'contact', label: t('nav.contact') },
   ];
-
-  const activeIndex = Math.max(0, navItems.findIndex(i => i.id === activeSection));
+  const onHero = activeSection === 'home';
 
   return (
-    <nav className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50">
-      <div className="flex items-center gap-1 p-2 bg-white/70 backdrop-blur-xl border border-white/50 rounded-full shadow-[0_10px_30px_rgba(0,0,0,0.08)] relative">
-        <motion.div
-          layoutId="nav-indicator"
-          className="absolute h-10 w-10 bg-[oklch(75%_0.183_55.934)] rounded-full z-0 shadow-md shadow-[oklch(75%_0.183_55.934)]/20"
-          animate={{
-            x: activeIndex * 44,
-          }}
-          transition={{ type: "spring", stiffness: 350, damping: 30 }}
-        />
-
-        {navItems.map((item) => {
-          const isActive = activeSection === item.id;
-          return (
-            <a
-              key={item.id}
-              href={`#${item.id}`}
-              className="group relative h-10 w-10 flex items-center justify-center transition-colors duration-300"
-              title={item.label}
-            >
-              <FontAwesomeIcon 
-                icon={item.icon} 
-                className={`text-sm relative z-10 transition-colors duration-200 ${
-                  isActive ? 'text-black' : 'text-slate-400 group-hover:text-slate-900'
-                }`} 
-              />
-              <div className="absolute -top-14 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-slate-900 text-white text-[9px] font-black rounded-lg opacity-0 group-hover:opacity-100 transition-opacity translate-y-2 group-hover:translate-y-0 pointer-events-none uppercase tracking-[0.2em] shadow-xl whitespace-nowrap z-50">
-                {item.label}
-                <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-slate-900 rotate-45" />
-              </div>
-            </a>
-          );
-        })}
+    <nav
+      className={`fixed top-0 inset-x-0 z-50 transition-colors duration-300 ${
+        onHero ? 'bg-transparent' : 'bg-white/90 backdrop-blur border-b border-slate-100'
+      }`}
+    >
+      <div className="px-6 md:px-16 h-16 flex items-center justify-between">
+        <a href="#home" className="overflow-hidden font-heading font-semibold text-slate-900">
+          {/* logo stays clipped off-left on the hero so it doesn't compete with the photo */}
+          <span
+            className={`flex items-center gap-2.5 transition-transform duration-500 ease-out ${
+              onHero ? '-translate-x-[38px]' : 'translate-x-0'
+            }`}
+          >
+            <img src="/assets/image/logo.png" alt="" className="h-7 w-7 rounded-full" />
+            MrToNGx0
+          </span>
+        </a>
+        <div className="flex items-center gap-6">
+          <ul className="hidden md:flex items-center gap-6">
+            {navItems.map((item) => (
+              <li key={item.id}>
+                <a
+                  href={`#${item.id}`}
+                  className={`text-sm transition-colors ${
+                    activeSection === item.id ? 'text-slate-900' : onHero ? 'text-slate-800 hover:text-slate-950' : 'text-slate-500 hover:text-slate-900'
+                  }`}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <button
+            onClick={onOpenPalette}
+            className={`hidden md:inline text-xs transition-colors ${onHero ? 'text-slate-700 hover:text-slate-950' : 'text-slate-400 hover:text-slate-900'}`}
+            aria-label="Open command palette"
+          >
+            <kbd className="font-sans">{shortcutLabel}</kbd>
+          </button>
+          <button
+            onClick={() => changeLanguage(currentLang === 'en' ? 'th' : 'en')}
+            className={`text-xs font-medium hover:text-slate-900 transition-colors border rounded-full px-3 py-1 ${onHero ? 'text-slate-800 border-slate-800/30' : 'text-slate-500 border-slate-200'}`}
+            aria-label="Switch language"
+          >
+            {currentLang === 'en' ? 'TH' : 'EN'}
+          </button>
+        </div>
       </div>
     </nav>
   );
@@ -110,57 +86,25 @@ const Navbar = React.memo(({ activeSection }) => {
 
 Navbar.displayName = 'Navbar';
 
-const useDraggableScroll = () => {
-  const ref = React.useRef(null);
-  const [isDown, setIsDown] = React.useState(false);
-  const [startX, setStartX] = React.useState(0);
-  const [scrollLeft, setScrollLeft] = React.useState(0);
-
-  const onMouseDown = (e) => {
-    setIsDown(true);
-    setStartX(e.pageX - ref.current.offsetLeft);
-    setScrollLeft(ref.current.scrollLeft);
-  };
-
-  const onMouseLeave = () => setIsDown(false);
-  const onMouseUp = () => setIsDown(false);
-
-  const onMouseMove = (e) => {
-    if (!isDown) return;
-    e.preventDefault();
-    const x = e.pageX - ref.current.offsetLeft;
-    const walk = (x - startX) * 2;
-    ref.current.scrollLeft = scrollLeft - walk;
-  };
-
-  return {
-    ref,
-    onMouseDown,
-    onMouseLeave,
-    onMouseUp,
-    onMouseMove,
-    className: isDown ? 'cursor-grabbing select-none snap-none' : 'cursor-grab'
-  };
-};
-
 function App() {
   const { t, i18n } = useTranslation();
   const [activeSection, setActiveSection] = React.useState('home');
+  const [paletteOpen, setPaletteOpen] = React.useState(false);
+  const [selectedProject, setSelectedProject] = React.useState(null);
   const containerRef = React.useRef(null);
-  const currentLang = i18n.language || 'en';
-  const dragScroll = useDraggableScroll();
+  // resolvedLanguage maps detector values like 'en-US' to 'en' so data[lang] lookups work
+  const currentLang = i18n.resolvedLanguage || 'en';
 
   React.useEffect(() => {
-    const observerOptions = { root: null, rootMargin: '-20% 0px -20% 0px', threshold: 0.2 };
-    const observerCallback = (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id);
-        }
-      });
-    };
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
-    ['home', 'projects', 'skills', 'experience', 'education', 'contact'].forEach((id) => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveSection(entry.target.id);
+        });
+      },
+      { root: containerRef.current, rootMargin: '-45% 0px -50% 0px' }
+    );
+    SECTIONS.forEach((id) => {
       const el = document.getElementById(id);
       if (el) observer.observe(el);
     });
@@ -171,6 +115,53 @@ function App() {
     i18n.changeLanguage(lng);
   }, [i18n]);
 
+  const openPalette = React.useCallback(() => setPaletteOpen(true), []);
+  const th = currentLang === 'th';
+  const goTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  const commands = [
+    ...SECTIONS.map((id) => ({
+      id: `go-${id}`,
+      label: id === 'home' ? (th ? 'หน้าแรก' : 'Home') : t(`nav.${{ projects: 'work', skills: 'tech' }[id] || id}`),
+      group: th ? 'ไปที่' : 'Go to',
+      keywords: id,
+      action: () => goTo(id),
+    })),
+    ...projects.map((p, idx) => ({
+      id: `project-${idx}`,
+      label: p.title[currentLang] || p.title.en,
+      group: th ? 'ผลงาน' : 'Project',
+      keywords: (p.skills || []).join(' '),
+      action: () => setSelectedProject(idx),
+    })),
+    {
+      id: 'copy-email',
+      label: th ? 'คัดลอกอีเมล' : 'Copy email address',
+      group: th ? 'การกระทำ' : 'Action',
+      keywords: personal.email,
+      action: () => navigator.clipboard?.writeText(personal.email),
+    },
+    {
+      id: 'resume',
+      label: th ? 'ดาวน์โหลด Resume' : 'Download resume',
+      group: th ? 'การกระทำ' : 'Action',
+      keywords: 'resume cv pdf',
+      action: () => window.open(personal.resumeLink, '_blank', 'noopener,noreferrer'),
+    },
+    {
+      id: 'switch-lang',
+      label: th ? 'Switch to English' : 'เปลี่ยนเป็นภาษาไทย',
+      group: th ? 'การกระทำ' : 'Action',
+      keywords: 'language thai english ภาษา',
+      action: () => changeLanguage(th ? 'en' : 'th'),
+    },
+    ...(personal.social || []).map((s) => ({
+      id: `social-${s.label}`,
+      label: s.label,
+      group: th ? 'ลิงก์' : 'Link',
+      action: () => window.open(s.link, '_blank', 'noopener,noreferrer'),
+    })),
+  ];
+
   const socialIcons = React.useMemo(() => ({
     Facebook: faFacebook,
     Instagram: faInstagram,
@@ -179,56 +170,30 @@ function App() {
   }), []);
 
   return (
-    <div 
+    <MotionConfig reducedMotion="user">
+    <div
       ref={containerRef}
-      className="relative h-screen overflow-y-auto scroll-smooth snap-y snap-proximity bg-white text-slate-800 selection:bg-[oklch(75%_0.183_55.934)] selection:text-white no-scrollbar"
+      className="relative h-screen overflow-y-auto scroll-smooth bg-white text-slate-700 selection:bg-brand selection:text-white"
     >
-      <Background />
-      <Navbar activeSection={activeSection} />
-      <Controls currentLang={currentLang} changeLanguage={changeLanguage} />
+      <Navbar
+        activeSection={activeSection}
+        currentLang={currentLang}
+        changeLanguage={changeLanguage}
+        onOpenPalette={openPalette}
+      />
+      <CommandPalette open={paletteOpen} setOpen={setPaletteOpen} commands={commands} />
       <ScrollToTop containerRef={containerRef} />
 
-      <main className="relative z-10">
-        <Hero 
-          personal={personal} 
-          currentLang={currentLang} 
-          socialIcons={socialIcons} 
-          t={t} 
-        />
-
-        <Projects 
-          projects={projects} 
-          currentLang={currentLang} 
-          t={t} 
-          dragScroll={dragScroll} 
-        />
-
-        <Skills 
-          skills={skills} 
-          currentLang={currentLang} 
-          t={t} 
-        />
-
-        <Experience 
-          experience={experience} 
-          currentLang={currentLang} 
-          t={t} 
-        />
-
-        <Education 
-          education={education} 
-          currentLang={currentLang} 
-          t={t} 
-        />
-
-        <Contact 
-          personal={personal} 
-          socialIcons={socialIcons} 
-          currentLang={currentLang} 
-          t={t} 
-        />
+      <main>
+        <Hero personal={personal} currentLang={currentLang} socialIcons={socialIcons} t={t} containerRef={containerRef} />
+        <Projects projects={projects} currentLang={currentLang} t={t} selectedIdx={selectedProject} setSelectedIdx={setSelectedProject} />
+        <Skills skills={skills} currentLang={currentLang} t={t} />
+        <Experience experience={experience} currentLang={currentLang} t={t} />
+        <Education education={education} currentLang={currentLang} t={t} />
+        <Contact personal={personal} socialIcons={socialIcons} currentLang={currentLang} t={t} />
       </main>
     </div>
+    </MotionConfig>
   );
 }
 

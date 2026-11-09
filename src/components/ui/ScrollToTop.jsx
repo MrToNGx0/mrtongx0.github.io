@@ -37,7 +37,7 @@ const ScrollToTop = ({ containerRef }) => {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.8, y: 20 }}
           onClick={scrollToTop}
-          className="fixed bottom-32 right-8 z-50 w-12 h-12 bg-white/40 backdrop-blur-xl border border-white/40 rounded-full flex items-center justify-center text-slate-900 shadow-xl transition-all hover:scale-110 active:scale-95 group"
+          className="fixed bottom-8 right-8 z-50 w-10 h-10 bg-white border border-slate-200 rounded-full flex items-center justify-center text-slate-700 hover:text-slate-900 hover:border-slate-400 transition-colors group"
           aria-label="Scroll to top"
         >
           <FontAwesomeIcon 
