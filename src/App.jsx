@@ -21,7 +21,7 @@ import Education from './sections/Education';
 import Contact from './sections/Contact';
 import ScrollToTop from './components/ui/ScrollToTop';
 
-const Background = ({ progress }) => {
+const Background = React.memo(() => {
   return (
     <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none bg-white">
       <video
@@ -29,34 +29,34 @@ const Background = ({ progress }) => {
         loop
         muted
         playsInline
-        className="absolute min-w-full min-h-full object-cover transition-all duration-300"
-        style={{ 
-          opacity: 1,
-          filter: `grayscale(${progress * 100}%) brightness(${100 + (progress * 20)}%) contrast(${100 - (progress * 10)}%)`
-        }}
+        className="absolute min-w-full min-h-full object-cover opacity-60 will-change-transform"
       >
         <source src="/assets/video/background.mp4" type="video/mp4" />
       </video>
-      <div className="absolute inset-0 bg-white/20 backdrop-blur-[0.5px]" />
+      <div className="absolute inset-0 bg-white/40" />
       <div className="absolute inset-0 bg-subtle opacity-10" />
     </div>
   );
-};
+});
 
-const Controls = ({ currentLang, changeLanguage }) => {
+Background.displayName = 'Background';
+
+const Controls = React.memo(({ currentLang, changeLanguage }) => {
   return (
     <div className="fixed top-8 right-8 z-50 flex gap-4">
       <button 
         onClick={() => changeLanguage(currentLang === 'en' ? 'th' : 'en')}
-        className="w-12 h-12 bg-white/40 backdrop-blur-xl border border-white/40 rounded-full flex items-center justify-center text-slate-900 shadow-xl transition-all hover:scale-110 active:scale-95"
+        className="w-12 h-12 bg-white/60 backdrop-blur-md border border-white/40 rounded-full flex items-center justify-center text-slate-900 shadow-lg transition-transform hover:scale-110 active:scale-95"
       >
         <span className="text-[10px] font-black uppercase tracking-tighter">{currentLang === 'en' ? 'TH' : 'EN'}</span>
       </button>
     </div>
   );
-};
+});
 
-const Navbar = ({ activeSection }) => {
+Controls.displayName = 'Controls';
+
+const Navbar = React.memo(({ activeSection }) => {
   const { t } = useTranslation();
   const navItems = [
     { id: 'home', icon: faCompass, label: t('nav.home') },
@@ -67,16 +67,18 @@ const Navbar = ({ activeSection }) => {
     { id: 'contact', icon: faPaperPlane, label: t('nav.contact') },
   ];
 
+  const activeIndex = Math.max(0, navItems.findIndex(i => i.id === activeSection));
+
   return (
     <nav className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50">
-      <div className="flex items-center gap-1 p-2 bg-white/40 backdrop-blur-2xl border border-white/40 rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.1)] relative">
+      <div className="flex items-center gap-1 p-2 bg-white/70 backdrop-blur-xl border border-white/50 rounded-full shadow-[0_10px_30px_rgba(0,0,0,0.08)] relative">
         <motion.div
           layoutId="nav-indicator"
-          className="absolute h-10 w-10 bg-[oklch(75%_0.183_55.934)] rounded-full z-0 shadow-lg shadow-[oklch(75%_0.183_55.934)]/20"
+          className="absolute h-10 w-10 bg-[oklch(75%_0.183_55.934)] rounded-full z-0 shadow-md shadow-[oklch(75%_0.183_55.934)]/20"
           animate={{
-            x: navItems.findIndex(i => i.id === activeSection) * 44,
+            x: activeIndex * 44,
           }}
-          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+          transition={{ type: "spring", stiffness: 350, damping: 30 }}
         />
 
         {navItems.map((item) => {
@@ -85,16 +87,16 @@ const Navbar = ({ activeSection }) => {
             <a
               key={item.id}
               href={`#${item.id}`}
-              className="group relative h-10 w-10 flex items-center justify-center transition-colors duration-500"
+              className="group relative h-10 w-10 flex items-center justify-center transition-colors duration-300"
               title={item.label}
             >
               <FontAwesomeIcon 
                 icon={item.icon} 
-                className={`text-sm relative z-10 transition-colors duration-300 ${
+                className={`text-sm relative z-10 transition-colors duration-200 ${
                   isActive ? 'text-black' : 'text-slate-400 group-hover:text-slate-900'
                 }`} 
               />
-              <div className="absolute -top-14 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-slate-900 text-white text-[9px] font-black rounded-lg opacity-0 group-hover:opacity-100 transition-all translate-y-2 group-hover:translate-y-0 pointer-events-none uppercase tracking-[0.2em] shadow-xl whitespace-nowrap z-50">
+              <div className="absolute -top-14 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-slate-900 text-white text-[9px] font-black rounded-lg opacity-0 group-hover:opacity-100 transition-opacity translate-y-2 group-hover:translate-y-0 pointer-events-none uppercase tracking-[0.2em] shadow-xl whitespace-nowrap z-50">
                 {item.label}
                 <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-slate-900 rotate-45" />
               </div>
@@ -104,7 +106,9 @@ const Navbar = ({ activeSection }) => {
       </div>
     </nav>
   );
-};
+});
+
+Navbar.displayName = 'Navbar';
 
 const useDraggableScroll = () => {
   const ref = React.useRef(null);
@@ -141,17 +145,18 @@ const useDraggableScroll = () => {
 
 function App() {
   const { t, i18n } = useTranslation();
-  const [scrollProgress, setScrollProgress] = React.useState(0);
   const [activeSection, setActiveSection] = React.useState('home');
   const containerRef = React.useRef(null);
   const currentLang = i18n.language || 'en';
   const dragScroll = useDraggableScroll();
 
   React.useEffect(() => {
-    const observerOptions = { root: null, rootMargin: '0px', threshold: 0.5 };
+    const observerOptions = { root: null, rootMargin: '-20% 0px -20% 0px', threshold: 0.2 };
     const observerCallback = (entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) setActiveSection(entry.target.id);
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
       });
     };
     const observer = new IntersectionObserver(observerCallback, observerOptions);
@@ -162,24 +167,23 @@ function App() {
     return () => observer.disconnect();
   }, []);
 
-  const handleScroll = () => {
-    if (!containerRef.current) return;
-    const { scrollTop, scrollHeight, clientHeight } = containerRef.current;
-    const progress = scrollTop / (scrollHeight - clientHeight);
-    setScrollProgress(progress);
-  };
+  const changeLanguage = React.useCallback((lng) => {
+    i18n.changeLanguage(lng);
+  }, [i18n]);
 
-  const changeLanguage = (lng) => i18n.changeLanguage(lng);
-
-  const socialIcons = { Facebook: faFacebook, Instagram: faInstagram, Github: faGithub, Youtube: faYoutube };
+  const socialIcons = React.useMemo(() => ({
+    Facebook: faFacebook,
+    Instagram: faInstagram,
+    Github: faGithub,
+    Youtube: faYoutube
+  }), []);
 
   return (
     <div 
       ref={containerRef}
-      onScroll={handleScroll}
-      className="relative h-screen overflow-y-scroll snap-y snap-mandatory bg-white text-slate-800 selection:bg-[oklch(75%_0.183_55.934)] selection:text-white no-scrollbar transition-colors duration-500"
+      className="relative h-screen overflow-y-auto scroll-smooth snap-y snap-proximity bg-white text-slate-800 selection:bg-[oklch(75%_0.183_55.934)] selection:text-white no-scrollbar"
     >
-      <Background progress={scrollProgress} />
+      <Background />
       <Navbar activeSection={activeSection} />
       <Controls currentLang={currentLang} changeLanguage={changeLanguage} />
       <ScrollToTop containerRef={containerRef} />
