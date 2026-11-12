@@ -4,17 +4,17 @@ export const experience = [
     organizationName: { en: "AheadAll Co.,LTD.", th: "บริษัท อะเฮดออล จำกัด" },
     startDate: "2024-11",
     endDate: "Present",
-    skills: ["React", "Vite", "Tailwind CSS", "NestJS", "MongoDB"],
+    skills: ["React", "Vite", "Tailwind CSS", "NestJS", "FastAPI", "MongoDB", "Docker"],
     responsibilities: {
       en: [
-        "Architect and develop full-stack web applications using React and NestJS",
-        "Lead development of ADOS incident alert platform and maintain property management systems",
-        "Optimize RESTful APIs, manage MongoDB schemas, and ensure system uptime"
+        "Lead full-stack development of ADOS emergency alert platform with live IoT tracking maps and WebSockets",
+        "Architect real-time computer vision pipeline for Vision AI Platform using FastAPI, YOLOv8, WebRTC, and Docker",
+        "Optimize RESTful APIs and MongoDB schemas, ensuring high availability and low query latency"
       ],
       th: [
-        "พัฒนาเว็บแอปพลิเคชันแบบ Full Stack ด้วย React และ NestJS",
-        "พัฒนาแพลตฟอร์มแจ้งเตือนภัย ADOS และดูแลรักษาระบบจัดการโครงการที่อยู่อาศัย",
-        "ปรับปรุงประสิทธิภาพ RESTful API, ดูแลฐานข้อมูล MongoDB และแก้ไขปัญหาทางเทคนิค"
+        "พัฒนาแพลตฟอร์มแจ้งเตือนภัย ADOS พร้อมแผนที่ติดตามอุปกรณ์ IoT แบบ Real-time ด้วย WebSockets",
+        "ออกแบบสถาปัตยกรรม Vision AI Platform ด้วย FastAPI, YOLOv8 และ WebRTC Streaming รองรับกล้องหลายตัวผ่าน Docker",
+        "ปรับปรุงประสิทธิภาพ RESTful API และดัชนีฐานข้อมูล MongoDB เพื่อความเสถียรของระบบในระดับ Production"
       ]
     }
   },
@@ -23,19 +23,17 @@ export const experience = [
     organizationName: { en: "Kabin Technology CO.,LTD.", th: "บริษัท กบิน เทคโนโลยี จำกัด" },
     startDate: "2024-06",
     endDate: "2024-10",
-    skills: ["Angular", "Express", "MySQL", "Socket.IO"],
+    skills: ["Angular", "TypeScript", "Express", "MySQL"],
     responsibilities: {
       en: [
-        "Develop and maintain web applications",
-        "Optimize code for performance",
-        "Identify and resolve technical issues",
-        "Implement new features based on user feedback"
+        "Develop enterprise modules for Isuzu Leasing loan tracking and operation history portal adhering to financial standards",
+        "Deliver responsive user-facing features and modular components based on enterprise client feedback",
+        "Diagnose and resolve production issues across frontend state and API layers, optimizing runtime performance"
       ],
       th: [
-        "พัฒนาและดูแลรักษาแอปพลิเคชันเว็บ",
-        "ปรับปรุงประสิทธิภาพของโค้ด",
-        "ระบุและแก้ไขปัญหาทางเทคนิค",
-        "พัฒนาและเพิ่มฟีเจอร์ใหม่ตามข้อเสนอแนะจากผู้ใช้"
+        "พัฒนาระบบติดตามประวัติการทำงานและสถานะสินเชื่อ Isuzu Leasing ตามมาตรฐานความปลอดภัยข้อมูลทางการเงิน",
+        "พัฒนาและเพิ่มฟีเจอร์โมดูลาร์ใหม่บน Angular ตามข้อเสนอแนะและโจทย์ธุรกิจของลูกค้าองค์กร",
+        "แก้ไขปัญหาทางเทคนิคในระดับ Production และปรับปรุงประสิทธิภาพของโค้ด Frontend และ API"
       ]
     }
   },
@@ -44,19 +42,17 @@ export const experience = [
     organizationName: { en: "Convergence Technology CO.,LTD.", th: "บริษัท คอนเวอร์เจนซ์ เทคโนโลยี จำกัด" },
     startDate: "2023-01",
     endDate: "2024-05",
-    skills: ["Angular", "Express", "MariaDB", "Python"],
+    skills: ["Angular", "Express", "Socket.IO", "MariaDB"],
     responsibilities: {
       en: [
-        "Develop and maintain web applications and government backoffice systems",
-        "Contributed to Isuzu Leasing operation history and performance overview modules",
-        "Developed key features for DITP E-Academy online training platform",
-        "Optimize code for performance and resolve technical issues"
+        "Implement core interactive learning workflows and administrative backoffice for DITP E-Academy national training platform",
+        "Build real-time notification and event streaming features using Socket.IO, Angular, and Express",
+        "Design relational database schemas and optimize complex reporting queries on MariaDB/MySQL for fast data retrieval"
       ],
       th: [
-        "พัฒนาและดูแลรักษาแอปพลิเคชันเว็บและระบบหลังบ้านภาครัฐ",
-        "ร่วมพัฒนาระบบติดตามประวัติการทำงานและสถานะสินเชื่อ Isuzu Leasing",
-        "พัฒนาฟีเจอร์หลักสำหรับแพลตฟอร์มการเรียนรู้ E-Academy (DITP)",
-        "ปรับปรุงประสิทธิภาพของโค้ดและแก้ไขปัญหาทางเทคนิค"
+        "พัฒนาฟีเจอร์หลักและระบบหลังบ้านสำหรับแพลตฟอร์มการเรียนรู้ออนไลน์ระดับประเทศ DITP E-Academy",
+        "พัฒนาระบบแจ้งเตือนและสตรีมมิงอีเวนต์แบบ Real-time ด้วย Socket.IO, Angular และ Express",
+        "ออกแบบโครงสร้างฐานข้อมูลและปรับปรุงคิวรีรายงานที่ซับซ้อนบน MariaDB/MySQL เพื่อการดึงข้อมูลที่รวดเร็ว"
       ]
     }
   }
