@@ -2,11 +2,11 @@ export const projects = [
   {
     id: "PRJ-01",
     title: {
-      en: "Vision AI Platform (PoC)",
-      th: "Vision AI Platform (PoC)"
+      en: "Vision AI Platform",
+      th: "Vision AI Platform"
     },
     description: {
-      en: "An intelligent video analytics prototype for IP camera RTSP streaming via WebRTC with YOLOv8 line-crossing, zone intrusion detection, and Line alerts.",
+      en: "An intelligent video analytics platform for IP camera RTSP streaming via WebRTC with YOLOv8 line-crossing, zone intrusion detection, and Line alerts.",
       th: "ระบบวิเคราะห์ภาพสดจากกล้อง IP ผ่าน WebRTC ด้วย AI (YOLOv8) ตรวจจับการข้ามเส้น บุกรุกพื้นที่ และแจ้งเตือนผ่าน Line"
     },
     banner_url: "/assets/image/vision-ai/01-dashboard-live-map.png",
